@@ -1,7 +1,6 @@
 import face_recognition
 import numpy as np
 from PIL import Image, ImageDraw
-from IPython.display import display
 
 # This is an example of running face recognition on a single image
 # and drawing a box around each person that was identified.
@@ -54,7 +53,5 @@ for (top, right, bottom, left), face_encoding in zip(face_locations, face_encodi
     draw.text((left + 6, bottom - text_height - 5), name, fill=(255, 255, 255, 255))
 
 del draw
-
-display(pil_image)
 
 pil_image.save('result.jpg')
