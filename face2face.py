@@ -6,15 +6,22 @@ https://github.com/ageitgey/face_recognition/blob/master/examples/recognize_face
 import face_recognition
 import os
 
-
-# Welcome message
-def welcome_message():
-    return "------ TESTE DE BIOMETRIA FACIAL ------\n"
+# To be continue or finish the while execute
+def try_new_test():
+    execute = input("\nGostaria de fazer um novo teste?\nDigite 1 para SIM ou 0 para NAO:\n")
+    if execute == '1':
+        execute = True
+        os.system('cls' if os.name == 'nt' else 'clear')
+    else:
+        execute = False
+        print("\n---FIM---")
+        quit()
+    return execute
 
 # Run menu
 execute = True
 while execute == True:
-    welcome_message()
+    print("\n------ TESTE DE BIOMETRIA FACIAL ------\n")
 
     # Set the config path and name files
     main_path = "TESTE_DE_BIOMETRIA_FACIAL"
@@ -27,7 +34,9 @@ while execute == True:
         main_image = face_recognition.load_image_file(main_path + "/" + image_path + "/" + image_name_one)
         compare_image = face_recognition.load_image_file(main_path + "/" + image_path + "/" + image_name_two)
     except FileNotFoundError:
-        print("Pasta nao existe ou possui algum problema de caracter")
+        print("\nPasta nao existe ou possui algum problema de caracter.")
+        try_new_test()
+        continue
 
     # Get the face encodings for each face in each image file
     # Since there could be more than one face in each image, it returns a list of encodings.
@@ -48,26 +57,11 @@ while execute == True:
 
     if results:
         if results[0] == True:
-            '''
-            Pasta: Item_45
-            Resultado: Confere [✓]
-            Diretorio: TESTE_DE_BIOMETRIA_FACIAL/Item_47/
-            '''
             print(f"\nPasta: {image_path}\nResultado: Confere [✓]\nDiretorio: {'/'+ main_path + '/' +image_path }\n---------------------------------------------------")
             
         else:
-            print("Não confere [x]\n")
+            print(f"\nPasta: {image_path}\nResultado: Nao confere [x]\nDiretorio: {'/'+ main_path + '/' +image_path }\n---------------------------------------------------")
     else:
         print("Não foi possível realizar a comparação de imagens")
     
-    execute = input("\nGostaria de fazer um novo teste?\nDigite 1 para SIM ou 0 para NAO:\n")
-    
-    
-    if execute == '1':
-        execute = True
-        os.system('cls' if os.name == 'nt' else 'clear')
-    else:
-        execute = False
-        print("FIM")
-        
-
+    try_new_test()
