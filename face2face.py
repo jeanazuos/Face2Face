@@ -1,13 +1,21 @@
 '''
 Construído baseado no exemplo da própria biblioteca face_recognition em:
-ohttps://github.com/ageitgey/face_recognition/blob/master/examples/recognize_faces_in_pictures.py
+https://github.com/ageitgey/face_recognition/blob/master/examples/recognize_faces_in_pictures.py
 '''
 
 import face_recognition
+import os
+
+# Set the config path and name files
+main_path = "TESTE_DE_BIOMETRIA_FACIAL"
+image_path = input("Insira o nome da pasta a ser analisado EX: 'Item_7':")
+image_name_one = "Imagem_1.JPG"
+image_name_two = "Imagem_2.JPG"
+
 
 # Load the jpg files into numpy arrays
-main_image = face_recognition.load_image_file("TESTE_DE_BIOMETRIA_FACIAL/Item_47/Imagem_1.JPG")
-compare_image = face_recognition.load_image_file("TESTE_DE_BIOMETRIA_FACIAL/Item_47/Imagem_2.JPG")
+main_image = face_recognition.load_image_file(main_path + "/" + image_path + "/" + image_name_one)
+compare_image = face_recognition.load_image_file(main_path + "/" + image_path + "/" + image_name_two)
 
 # Get the face encodings for each face in each image file
 # Since there could be more than one face in each image, it returns a list of encodings.
@@ -28,8 +36,13 @@ results = face_recognition.compare_faces(known_faces, compare_face_encoding)
 
 if results:
     if results[0] == True:
+        '''
+        Pasta: Item_45
+        Resultado: Confere [✓]
+        Diretorio: TESTE_DE_BIOMETRIA_FACIAL/Item_47/
+        '''
         print("Confere [✓]")
     else:
         print("Não confere [x]")
 else:
-    print("Não foi possível fazer a comparação de imagens")
+    print("Não foi possível realizar a comparação de imagens")
