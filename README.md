@@ -16,3 +16,8 @@ Este projeto visa o estudo de tecnologias de reconhecimento facial em um modelo 
 * Insira na pasta criada os arquivos a serem comparados respeitando a nomenclatura "Imagem_1.JPG" e "Imagem_2.JPG"; (Faça esse procedimento para todos os itens que deseja comparar, sempre criando um diretório para cada conjunto de comparações);
 * Volte na raiz do projeto e execute o comando "python app.py".
 
+# Links interessantes
+Aqui disponibilizo alguns links que julgo relevantes sobre a biblioteca principal "Face Recognition":
+- Posso retreinar o modelo? -> https://github.com/ageitgey/face_recognition/issues/331
+- Reconhecimento facial com Deep Learning -> https://medium.com/@ageitgey/machine-learning-is-fun-part-4-modern-face-recognition-with-deep-learning-c3cffc121d78
+- Perfil Github do criador da biblioteca -> https://github.com/ageitgey
