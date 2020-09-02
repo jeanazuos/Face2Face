@@ -1,21 +1,20 @@
 import face_recognition
+import os
 from flask import Flask, jsonify, request, redirect, flash
 
-# You can change this to any folder on your system
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+ALLOWED_EXTENSIONS = os.getenv('ALLOWED_EXTENSIONS')
 
 app = Flask(__name__)
-#It will allow below 16MB contents only, you can change it
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+
+# Limit file size
+app.config['MAX_CONTENT_LENGTH'] = int(os.getenv('MAX_CONTENT_LENGTH'))
 
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-
-@app.route('/', methods=['GET', 'POST'])
-def upload_image():
-    its_secure_files = []
+def file_validator(request):
+    checked_files = []
     # Check if a valid image file was uploaded
     if request.method == 'POST':
         
@@ -31,21 +30,35 @@ def upload_image():
 
             if file and allowed_file(file.filename):
             # The image file seems valid! Detect faces and return the result.
-                its_secure_files.append(file)
+                checked_files.append(file)
+        return checked_files
+
+@app.route('/', methods=['GET', 'POST'])
+def upload_image():
+    try:
+        its_secure_files = file_validator(request)
+        if len(its_secure_files) == 2:
+            return detect_faces_in_image(its_secure_files)
+        else:
+        # If no valid image file was uploaded, show the file upload form:
+            return '''
+        <!doctype html>
+        <title>Is this a picture of Obama?</title>
+        <h1>Upload a picture and see if it's a picture of Obama!</h1>
+        <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Upload">
+        </form>
+        '''
+
+
+    except Exception as e:
+        print(e)
+
+
     
-    if len(its_secure_files) == 2:
-        return detect_faces_in_image(its_secure_files)
-    else:
-    # If no valid image file was uploaded, show the file upload form:
-        return '''
-    <!doctype html>
-    <title>Is this a picture of Obama?</title>
-    <h1>Upload a picture and see if it's a picture of Obama!</h1>
-    <form method="POST" enctype="multipart/form-data">
-      <input type="file" name="file">
-      <input type="submit" value="Upload">
-    </form>
-    '''
+    
+    
 
 
 def detect_faces_in_image(file_stream):
