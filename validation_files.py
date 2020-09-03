@@ -1,4 +1,8 @@
+import os
+from flask import redirect, flash
+
 def allowed_file(filename):
+    ALLOWED_EXTENSIONS = os.getenv('ALLOWED_EXTENSIONS')
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
@@ -14,13 +18,17 @@ def file_validator(request):
 
             files = request.files.getlist('files[]')
   
+            # Check if files has 2 images
+            if len(files) != 2:
+                return False
+
             for file in files:
                 if file.filename == '':
-                    return redirect(request.url)
+                    return False
 
                 if file and allowed_file(file.filename):
                     checked_files.append(file)
-            print(checked_files)
             return checked_files
     except Exception as e:
         print(e)
+        return abort(400)
