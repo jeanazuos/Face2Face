@@ -1,63 +1,38 @@
 import face_recognition
 import os
-from flask import Flask, jsonify, request, redirect, flash
-
-ALLOWED_EXTENSIONS = os.getenv('ALLOWED_EXTENSIONS')
+from validation_files import file_validator
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
 # Limit file size
 app.config['MAX_CONTENT_LENGTH'] = int(os.getenv('MAX_CONTENT_LENGTH'))
 
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-def file_validator(request):
-    checked_files = []
-    # Check if a valid image file was uploaded
-    if request.method == 'POST':
-        
-        if 'files[]' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
-
-        files = request.files.getlist('files[]')
-  
-        for file in files:
-            if file.filename == '':
-                return redirect(request.url)
-
-            if file and allowed_file(file.filename):
-            # The image file seems valid! Detect faces and return the result.
-                checked_files.append(file)
-        return checked_files
-
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/api/check_faces', methods=['GET', 'POST'])
 def upload_image():
     try:
         its_secure_files = file_validator(request)
-        if len(its_secure_files) == 2:
-            return detect_faces_in_image(its_secure_files)
-        else:
-        # If no valid image file was uploaded, show the file upload form:
-            return '''
-        <!doctype html>
-        <title>Is this a picture of Obama?</title>
-        <h1>Upload a picture and see if it's a picture of Obama!</h1>
-        <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="file">
-        <input type="submit" value="Upload">
-        </form>
-        '''
+        print(its_secure_files)
+        # If dont have files returns will be False
+        if its_secure_files:
+            result = detect_faces_in_image(its_secure_files)
+            return jsonify(result), 200
 
+        else: 
+            result = {
+                        "Error": "Invalid type, quantity or empty files",
+                    }
+            return jsonify(result), 400
 
     except Exception as e:
-        print(e)
+        print(f'Log error: {e}')
+        result = {
+                        "Error": "Internal Server Error", 
+                    }
+        return jsonify(result), 500
 
 
-    
-    
+
     
 
 
@@ -87,7 +62,19 @@ def detect_faces_in_image(file_stream):
         "face_found_in_image": face_found,
         "is_picture_of_obama": is_obama
     }
-    return jsonify(result)
+    return result
+
+    '''
+    INCLUIR OUTROS RETORNOS
+    CRIAR UM CHECK PARA CASO NAO TENHA ENCONTRADO ROSTOS RETORNAR ALGUM ERRO
+200
+400
+404
+408
+500
+'''
+    
+    
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5001, debug=True)
