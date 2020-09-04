@@ -11,6 +11,7 @@ Este projeto visa o estudo de tecnologias de reconhecimento facial em um modelo 
 
 # Como executar?
 * Clone o repositório e entre no diretório raiz;
+* Instale as dependências do requirements.txt com "pip install -r requirements.txt";
 * Acesse o diretório "TESTE_DE_BIOMETRIA_FACIAL";
 * Crie uma pasta respeitando a nomenclatura das já existentes, por exemplo "Item_4";
 * Insira na pasta criada os arquivos a serem comparados respeitando a nomenclatura "Imagem_1.JPG" e "Imagem_2.JPG"; (Faça esse procedimento para todos os itens que deseja comparar, sempre criando um diretório para cada conjunto de comparações);
