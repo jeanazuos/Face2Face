@@ -1,5 +1,6 @@
 import os
 from flask import Flask
+from flask-swagger-ui import get_swaggerui_blueprint
 
 from views.views import my_bp
 
