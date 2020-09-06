@@ -1,0 +1,104 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "description": "Reconhecimento facial",
+      "version": "1.0.0",
+      "title": "Face2Face",
+      "contact": {
+        "email": "jean.azuos@gmail.com"
+      },
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "servers": [
+        {
+          "url": "/"
+        }
+      ],
+      "tags": [
+        {
+          "name": "Faces check",
+          "description": "Endpoints de validação das faces"
+        }
+      ],
+      "paths": {
+        "/test": {
+          "get": {
+            "tags": [
+              "Test Request"
+            ],
+            "summary": "Retornar teste",
+            "responses": {
+              "200": {
+                "description": "Retorno com sucesso",
+                "schema": {
+                }
+              },
+              "400": {
+                  "description": "Requisição inválida"
+              },
+              "500": {
+                  "description": "Erro no servidor"
+              }
+            }
+          }
+        },
+        "/check_faces": {
+            "post": {
+              "tags": [
+                "Check faces request"
+              ],
+              "summary": "Verificador de faces",
+              "produces": [
+                "application/json"
+              ],
+              "requestBody": {
+                "required": true,
+                "content": {
+                  "multipart/form-data": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                          "files[]": {
+                              "description": "The list of files",
+                              "type": "array",
+                              "items": {
+                                  "type": "file",
+                                  "format": "bynary"
+                              }
+                          }
+                      }
+                    }
+                  }
+                }
+              },
+              "responses": {
+                "200": {
+                  "description": "Retorno com sucesso",
+                },
+                "400": {
+                    "description": "Invalid type, quantity or empty files"
+                },
+                "500": {
+                    "description": "Internal Server Error"
+                }
+              }
+            }
+          }
+      },
+    "components": {
+      "schemas": {
+        "check_faces": {
+          "type": "object",
+          "properties": {
+            "files[]": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        }
+      }
+    }
+  }

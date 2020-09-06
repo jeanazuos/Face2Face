@@ -4,7 +4,7 @@ from controller.detect import DetectController
 
 my_bp = Blueprint('views', __name__)
 
-@my_bp.route('/')
+@my_bp.route('/test', methods=['GET'])
 def index():
     return 'teste'
 
