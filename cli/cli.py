@@ -31,8 +31,8 @@ while execute == True:
 
     # Load the jpg files into numpy arrays
     try:
-        main_image = face_recognition.load_image_file(image_name_one)
-        compare_image = face_recognition.load_image_file(image_name_two)
+        main_image = face_recognition.load_image_file(main_path + "/" + image_path + "/" + image_name_one)
+        compare_image = face_recognition.load_image_file(main_path + "/" + image_path + "/" + image_name_two)
     except Exception as e:
         print("\nPasta nao existe ou possui algum problema de caracter.")
         print(e)
