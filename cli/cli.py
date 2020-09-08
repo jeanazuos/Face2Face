@@ -24,17 +24,18 @@ while execute == True:
     print("\n------ TESTE DE BIOMETRIA FACIAL ------\n")
 
     # Set the config path and name files
-    main_path = "TESTE_DE_BIOMETRIA_FACIAL"
+    main_path = os.getenv("CLI_MAIN_PATH_CHECK", "TESTE_DE_BIOMETRIA_FACIAL")
     image_path = input("Insira o nome da pasta a ser analisado EX: 'Item_7':\n")
-    image_name_one = "Imagem_1.JPG"
-    image_name_two = "Imagem_2.JPG"
+    image_name_one = os.getenv("CLI_DEFAULT_IMAGE_NAME_ONE", "Imagem_1.JPG")
+    image_name_two = os.getenv("CLI_DEFAULT_IMAGE_NAME_ONE", "Imagem_2.JPG")
 
     # Load the jpg files into numpy arrays
     try:
         main_image = face_recognition.load_image_file(main_path + "/" + image_path + "/" + image_name_one)
         compare_image = face_recognition.load_image_file(main_path + "/" + image_path + "/" + image_name_two)
-    except FileNotFoundError:
+    except Exception as e:
         print("\nPasta nao existe ou possui algum problema de caracter.")
+        print(e)
         try_new_test()
         continue
 
