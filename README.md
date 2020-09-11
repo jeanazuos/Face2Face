@@ -15,7 +15,6 @@ Este projeto visa o estudo de tecnologias de reconhecimento facial em um modelo 
 * Numpy.
 
 
-
 # Como executar?
  - Temos duas maneiras de executar, uma delas é via CLI (command-line interface) e a outra via API.
 
@@ -32,13 +31,18 @@ Este projeto visa o estudo de tecnologias de reconhecimento facial em um modelo 
  Após executar a aplicação através do docker, podemos enviar fotos de rostos humanos para serem comparados.
  Utilizamos o verbo 'POST' para enviarmos as imagens e através dele recebemos um payload com dois valores em caso de sucesso. Em nosso exemplo vamos utilizar o Postman para realizarmos essa requisição (o software pode ser encontrado para download gratuito em "https://www.postman.com/downloads/").
 #### Montando a requisição via Postman
-* Após ter realizado o download, abra o software (Postman) e siga os seguintes passos:
+* Após ter realizado o download, abra o software (Postman) e crie a seguinte estrutura:
+![PostmanExamplePost](https://media.githubusercontent.com/media/jeanazuos/Face2Face/master/static/doc_media/postman_post_example.png)
+* Resultado da requisição, em caso de sucesso é retornado um json contendo a informação de que foram encontrados as faces e se elas dão match:
+![PostmanExamplePostSuccess](https://media.githubusercontent.com/media/jeanazuos/Face2Face/master/static/doc_media/postman_post_example.png)
 
+##### Observações:
+* Lembrando que a porta `5005`é um exemplo e vai de acordo com o que você montou ao rodar o Docker nos passos anteriores.
+* São aceitas as extensões: "png, jpg, jpeg e gif".
+* É possível fazer comparação entre apenas duas imagens e obrigatóriamente elas devem possuir a face humana.
+* Imagens que possuem mais de uma pessoa ainda não são tratadas, portanto, provavelmente a comparação poderá ser falha. (Isso é um ponto de melhoria).
+* Foi implementado Swagger como documentação de apoio, acesse o endpoint `http://localhost:5005/swagger/`.
  
-
- ### Acessando a API
- * Para ter certeza de que 
-
 ## (CLI)
  * Clone o repositório e entre no diretório raiz;
  * Crie um arquivo do tipo `.env` e insira o conteúdo presente no tópico "Variáveis de ambiente";
