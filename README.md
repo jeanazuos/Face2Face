@@ -32,9 +32,9 @@ Este projeto visa o estudo de tecnologias de reconhecimento facial em um modelo 
  Utilizamos o verbo 'POST' para enviarmos as imagens e através dele recebemos um payload com dois valores em caso de sucesso. Em nosso exemplo vamos utilizar o Postman para realizarmos essa requisição (o software pode ser encontrado para download gratuito em "https://www.postman.com/downloads/").
 #### Montando a requisição via Postman
 * Após ter realizado o download, abra o software (Postman) e crie a seguinte estrutura:
-![PostmanExamplePost](https://media.githubusercontent.com/media/jeanazuos/Face2Face/master/static/doc_media/postman_post_example.png)
+ * ![PostmanExamplePost](https://media.githubusercontent.com/media/jeanazuos/Face2Face/master/static/doc_media/postman_post_example.png)
 * Resultado da requisição, em caso de sucesso é retornado um json contendo a informação de que foram encontrados as faces e se elas dão match:
-![PostmanExamplePostSuccess](https://media.githubusercontent.com/media/jeanazuos/Face2Face/master/static/doc_media/postman_post_result.png)
+ * ![PostmanExamplePostSuccess](https://media.githubusercontent.com/media/jeanazuos/Face2Face/master/static/doc_media/postman_post_result.png)
 
 ##### Observações:
 * Lembrando que a porta `5005`é um exemplo e vai de acordo com o que você montou ao rodar o Docker nos passos anteriores.
