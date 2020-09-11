@@ -50,6 +50,5 @@ ENV CLI_DEFAULT_IMAGE_NAME_TWO "Imagem_2.JPG"
 
 RUN pip3 install -r requirements.txt
 
-EXPOSE 8080
 
 CMD ["python","app.py"]
