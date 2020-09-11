@@ -54,7 +54,7 @@ Este projeto visa o estudo de tecnologias de reconhecimento facial em um modelo 
    - Nota 2: A comparação deverá sempre ser feita entre apenas 2 (dois) arquivos.
  * Volte para o diretório `cli` e execute o comando `python cli.py`;
  * Ao rodar a aplicação você será direcionado para um menu principal onde poderá inserir o nome da pasta que deseja analisar:
-    ![MenuCli](https://media.githubusercontent.com/media/jeanazuos/Face2Face/cli/static/doc_media/run_cli.gif)
+  * ![MenuCli](https://media.githubusercontent.com/media/jeanazuos/Face2Face/cli/static/doc_media/run_cli.gif)
 
 # Links interessantes
 Aqui disponibilizo alguns links que julgo relevantes sobre o projeto e a biblioteca principal "Face Recognition":
