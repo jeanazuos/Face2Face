@@ -7,15 +7,38 @@ Este projeto visa o estudo de tecnologias de reconhecimento facial em um modelo 
 
 # Tecnologias utilizadas
 * Python 3;
+* Docker;
 * Face Recognition;
 * Dlib;
 * Flask;
 * Flask-swagger-ui;
-* Numpy;
+* Numpy.
+
 
 
 # Como executar?
  - Temos duas maneiras de executar, uma delas é via CLI (command-line interface) e a outra via API.
+
+## API - Docker
+ * Clone o repositório e entre no diretório raiz;
+ * Faça o build da imagem com `docker build . -t face2face/flask:last_edition`;
+ * Execute a imagem `docker run -d -p 5005:5000 face2face/flask:last_edition`;
+ * Obs.: (*O nome da imagem pode ser alterado, este é apenas um exemplo);
+ * Você pode conferir se a aplicação está de pé com o comando docker ps:
+ * ![DockerUp](https://media.githubusercontent.com/media/jeanazuos/Face2Face/master/static/doc_media/docker_up.png)
+ * Para acessar a url de teste você pode acessar através do seu navegador a url `http://0.0.0.0:5005/test` onde o valor `5005` representa a porta definida quando rodamos o container;
+
+### Verificando faces através da API - Docker
+ Após executar a aplicação através do docker, podemos enviar fotos de rostos humanos para serem comparados.
+ Utilizamos o verbo 'POST' para enviarmos as imagens e através dele recebemos um payload com dois valores em caso de sucesso. Em nosso exemplo vamos utilizar o Postman para realizarmos essa requisição (o software pode ser encontrado para download gratuito em "https://www.postman.com/downloads/").
+#### Montando a requisição via Postman
+* Após ter realizado o download, abra o software (Postman) e siga os seguintes passos:
+
+ 
+
+ ### Acessando a API
+ * Para ter certeza de que 
+
 ## (CLI)
  * Clone o repositório e entre no diretório raiz;
  * Crie um arquivo do tipo `.env` e insira o conteúdo presente no tópico "Variáveis de ambiente";
