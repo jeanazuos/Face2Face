@@ -34,7 +34,7 @@ Este projeto visa o estudo de tecnologias de reconhecimento facial em um modelo 
 * Após ter realizado o download, abra o software (Postman) e crie a seguinte estrutura:
 ![PostmanExamplePost](https://media.githubusercontent.com/media/jeanazuos/Face2Face/master/static/doc_media/postman_post_example.png)
 * Resultado da requisição, em caso de sucesso é retornado um json contendo a informação de que foram encontrados as faces e se elas dão match:
-![PostmanExamplePostSuccess](https://media.githubusercontent.com/media/jeanazuos/Face2Face/master/static/doc_media/postman_post_example.png)
+![PostmanExamplePostSuccess](https://media.githubusercontent.com/media/jeanazuos/Face2Face/master/static/doc_media/postman_post_result.png)
 
 ##### Observações:
 * Lembrando que a porta `5005`é um exemplo e vai de acordo com o que você montou ao rodar o Docker nos passos anteriores.
