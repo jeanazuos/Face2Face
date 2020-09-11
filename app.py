@@ -22,4 +22,4 @@ app.register_blueprint(my_bp)
 app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5001, debug=True)
+    app.run(host='0.0.0.0', port=int(os.getenv('FLASK_PORT_API')), debug=True)
