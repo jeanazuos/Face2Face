@@ -56,6 +56,16 @@ Este projeto visa o estudo de tecnologias de reconhecimento facial em um modelo 
  * Ao rodar a aplicação você será direcionado para um menu principal onde poderá inserir o nome da pasta que deseja analisar:
   * ![MenuCli](https://media.githubusercontent.com/media/jeanazuos/Face2Face/cli/static/doc_media/run_cli.gif)
 
+# Variáveis de ambiente
+`
+ALLOWED_EXTENSIONS="{'png', 'jpg', 'jpeg', 'gif'}"
+MAX_CONTENT_LENGTH=16777216
+CLI_MAIN_PATH_CHECK="TESTE_DE_BIOMETRIA_FACIAL"
+CLI_DEFAULT_IMAGE_NAME_ONE="Imagem_1.JPG"
+CLI_DEFAULT_IMAGE_NAME_TWO="Imagem_2.JPG"
+FLASK_PORT_API=5000
+`
+
 # Links interessantes
 Aqui disponibilizo alguns links que julgo relevantes sobre o projeto e a biblioteca principal "Face Recognition":
 - Posso retreinar o modelo? -> https://github.com/ageitgey/face_recognition/issues/331
